@@ -1,0 +1,23 @@
+<section>
+  <h1>{{englandData.title}} <small>{{englandData.location_type}}</small> </h1>
+  <div id="table">
+    <table border="1" cellpadding="10" cellspacing="0">
+      <thead>
+        <tr>
+          <th>title</th>
+          <th>location type</th>
+          <th>lat long</th>
+          <td>&nbsp;</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let england of englandDataChildren">
+          <td>{{england.title}}</td>
+          <td>{{england.location_type}}</td>
+          <td>{{england.latt_long}}</td>
+          <td><button type="button" (click)="getCity(england)">Details</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

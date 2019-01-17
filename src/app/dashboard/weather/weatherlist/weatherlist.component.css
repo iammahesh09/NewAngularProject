@@ -1,0 +1,17 @@
+#table {
+  width: 100%;
+  display: flex;
+}
+
+table {
+  width: 100%;
+}
+
+table thead th {
+  text-transform: uppercase;
+}
+
+table thead th,
+table tbody td {
+  justify-content: space-between;
+}
