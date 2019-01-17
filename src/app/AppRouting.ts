@@ -8,6 +8,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 const routes: Routes = [
     { path: '', redirectTo: 'weather', pathMatch: 'full' },
     { path: 'weather', component: WeatherlistComponent },
+    { path: 'weather/:id', component: WeatherDetailsComponent },
     { path: '**', component: PageNotFoundComponent },
 ];
 

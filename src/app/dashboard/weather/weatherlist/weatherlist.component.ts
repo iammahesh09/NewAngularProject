@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from '../../services/shared.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-weatherlist',
@@ -10,7 +11,7 @@ export class WeatherlistComponent implements OnInit {
   englandData: Object = [];
   englandDataChildren: any;
 
-  constructor(private _sharedService: SharedService) { }
+  constructor(private _sharedService: SharedService, private _router: Router) { }
 
   ngOnInit() {
     this._sharedService.getEngland().subscribe(
@@ -23,7 +24,8 @@ export class WeatherlistComponent implements OnInit {
   }
 
   getCity(city) {
-    console.log(city)
+    this._router.navigate(['/weather', city['woeid']]);
+    console.log(city);
   }
 
 }

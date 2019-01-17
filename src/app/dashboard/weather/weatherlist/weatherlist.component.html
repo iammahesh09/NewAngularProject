@@ -15,7 +15,7 @@
           <td>{{england.title}}</td>
           <td>{{england.location_type}}</td>
           <td>{{england.latt_long}}</td>
-          <td><button type="button" (click)="getCity(england)">Details</button></td>
+          <td><button type="button" (click)="getCity(england)" [routerLink]="['/weather', england.woeid]">Details</button></td>
         </tr>
       </tbody>
     </table>
