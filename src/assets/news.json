@@ -1,0 +1,49 @@
+[{
+    "id": 18976150,
+    "title": "Twitter migrates data to Google Cloud",
+    "points": 92,
+    "user": "theBashShell",
+    "time": 1548224920,
+    "time_ago": "an hour ago",
+    "comments_count": 38,
+    "type": "link",
+    "url": "https://cloud.google.com/twitter/",
+    "domain": "cloud.google.com"
+  },
+  {
+    "id": 18972516,
+    "title": "A meteorite hit the moon during yesterday's total lunar eclipse",
+    "points": 442,
+    "user": "curtis",
+    "time": 1548191480,
+    "time_ago": "11 hours ago",
+    "comments_count": 87,
+    "type": "link",
+    "url": "https://www.newscientist.com/article/2191526-a-meteorite-hit-the-moon-during-yesterdays-total-lunar-eclipse/",
+    "domain": "newscientist.com"
+  },
+  {
+    "id": 18968101,
+    "title": "Functional programming in C++ (2012)",
+    "points": 100,
+    "user": "tosh",
+    "time": 1548164081,
+    "time_ago": "18 hours ago",
+    "comments_count": 11,
+    "type": "link",
+    "url": "http://www.gamasutra.com/view/news/169296/Indepth_Functional_programming_in_C.php",
+    "domain": "gamasutra.com"
+  },
+  {
+    "id": 18975373,
+    "title": "TypeScript Tricks: Type Guards",
+    "points": 75,
+    "user": "mattgerstman",
+    "time": 1548213768,
+    "time_ago": "4 hours ago",
+    "comments_count": 12,
+    "type": "link",
+    "url": "https://www.matthewgerstman.com/ts-tricks-type-guards/",
+    "domain": "matthewgerstman.com"
+  }
+]

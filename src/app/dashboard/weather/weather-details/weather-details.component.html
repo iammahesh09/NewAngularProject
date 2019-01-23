@@ -1,4 +1,35 @@
-<h1>{{WeatherDetails.title}} <small>{{WeatherDetails.location_type}}</small></h1>
-<p><b>Time : </b>{{WeatherDetails.time | date:'medium'}}</p>
-<p><b>Sun Rise :</b> {{WeatherDetails.sun_rise | date:'long'}}</p>
-<p><b>Sun Set : </b>{{WeatherDetails.sun_set | date:'long'}}</p>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="medium" color="#fff" type="ball-rotate"></ngx-spinner>
+
+<section>
+  <div class="card">
+    <h5 class="card-header bg-primary text-white">{{WeatherDetails.title}} <small>{{WeatherDetails.location_type}}</small>
+      -
+      {{countryTitle}}
+    </h5>
+
+    <div class="card-body">
+      <p><b>Time : </b>{{WeatherDetails.time | date:'medium'}}</p>
+      <p><b>Sun Rise :</b> {{WeatherDetails.sun_rise | date:'long'}}</p>
+      <p><b>Sun Set : </b>{{WeatherDetails.sun_set | date:'long'}}</p>
+      <h4 class="bg-secondary text-capitalize text-white p-2">sources</h4>
+      <div class="row">
+        <div class="col-sm-3 mb-2" *ngFor="let sources of WeatherDetails.sources">
+          <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <a [href]="sources.url" target="_blank">{{sources.title}}</a>
+              <span class="badge badge-primary badge-pill">{{sources.crawl_rate}}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <ul>
+      <li *ngFor="let _item of _items | async">
+        {{_item.name}}
+      </li>
+    </ul>
+  </div>
+</section>

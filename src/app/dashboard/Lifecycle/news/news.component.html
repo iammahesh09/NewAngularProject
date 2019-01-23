@@ -1,0 +1,14 @@
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="medium" color="#fff" type="ball-rotate"></ngx-spinner>
+
+<section>
+  <div class="list-group">
+    <a class="list-group-item list-group-item-action flex-column align-items-start" *ngFor="let news of newsData"
+      [routerLink]="[ '/news', news.id ]" (click)="getNewsId(news)">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1 news_title">{{news.user}}</h5>
+        <small>{{news.time_ago}}</small>
+      </div>
+      <p class="card-text">{{news.title}}</p>
+    </a>
+  </div>
+</section>

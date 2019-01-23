@@ -4,11 +4,27 @@ import { RouterModule, Routes } from '@angular/router';
 import { WeatherlistComponent } from './dashboard/weather/weatherlist/weatherlist.component';
 import { WeatherDetailsComponent } from './dashboard/weather/weather-details/weather-details.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { WeatherSpecsComponent } from './dashboard/weather/weather-specs/weather-specs.component';
+import { WeatherParentComponent } from './dashboard/weather/weather-parent/weather-parent.component';
+import { ItemsListComponent } from './dashboard/itemsData/items-list/items-list.component';
+import { HomeComponent } from './dashboard/home/home.component';
+import { NewsComponent } from './dashboard/Lifecycle/news/news.component';
+import { NewsDetailsComponent } from './dashboard/Lifecycle/news-details/news-details.component';
+
 
 const routes: Routes = [
-    { path: '', redirectTo: 'weather', pathMatch: 'full' },
+    { path: '', component: HomeComponent },
     { path: 'weather', component: WeatherlistComponent },
-    { path: 'weather/:id', component: WeatherDetailsComponent },
+    {
+        path: 'weather/:id', component: WeatherDetailsComponent, children: [
+            { path: '', redirectTo: 'consolidated_weather', pathMatch: 'full' },
+            { path: 'consolidated_weather', component: WeatherSpecsComponent },
+            { path: 'parent', component: WeatherParentComponent }
+        ]
+    },
+    { path: 'itemslist', component: ItemsListComponent },
+    { path: 'news', component: NewsComponent },
+    { path: 'news/:id', component: NewsDetailsComponent },
     { path: '**', component: PageNotFoundComponent },
 ];
 

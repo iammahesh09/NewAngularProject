@@ -1,0 +1,40 @@
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="medium" color="#fff" type="ball-rotate"></ngx-spinner>
+
+<h2>Item List</h2>
+
+
+
+<div>
+  <h3>
+    Inline Editing
+  </h3>
+  <ngx-datatable #mydatatable class="material" [headerHeight]="50" [limit]="10" [columnMode]="'force'" [footerHeight]="50"
+    [rowHeight]="'auto'" [rows]="_itemsData">
+    <ngx-datatable-column name="Name">
+      <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-name'] = true" *ngIf="!editing[rowIndex + '-name']">
+          {{value}}
+        </span>
+        <input autofocus (blur)="updateValue($event, 'name', rowIndex)" *ngIf="editing[rowIndex+ '-name']" type="text"
+          [value]="value" />
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="type">
+      <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-type'] = true" *ngIf="!editing[rowIndex + '-type']">
+          {{value}}
+        </span>
+        <select *ngIf="editing[rowIndex + '-type']" (blur)="editing[rowIndex + '-type'] = false" (change)="updateValue($event, 'type', rowIndex)"
+          [value]="value">
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="cost">
+      <ng-template ngx-datatable-cell-template let-value="value">
+        {{value}}
+      </ng-template>
+    </ngx-datatable-column>
+  </ngx-datatable>
+</div>

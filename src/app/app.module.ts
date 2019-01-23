@@ -4,6 +4,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { MatButtonModule, MatCheckboxModule } from '@angular/material';
+
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { NgxSpinnerModule } from 'ngx-spinner';
+
 
 import { AppComponent } from './app.component';
 import { WeatherlistComponent } from './dashboard/weather/weatherlist/weatherlist.component';
@@ -11,6 +16,12 @@ import { WeatherDetailsComponent } from './dashboard/weather/weather-details/wea
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AppRoutingModule } from './AppRouting';
 import { MenuComponent } from './menu/menu.component';
+import { WeatherSpecsComponent } from './dashboard/weather/weather-specs/weather-specs.component';
+import { WeatherParentComponent } from './dashboard/weather/weather-parent/weather-parent.component';
+import { ItemsListComponent } from './dashboard/itemsData/items-list/items-list.component';
+import { HomeComponent } from './dashboard/home/home.component';
+import { NewsDetailsComponent } from './dashboard/Lifecycle/news-details/news-details.component';
+import { NewsComponent } from './dashboard/Lifecycle/news/news.component';
 
 
 @NgModule({
@@ -20,14 +31,24 @@ import { MenuComponent } from './menu/menu.component';
     WeatherDetailsComponent,
     PageNotFoundComponent,
     MenuComponent,
+    WeatherSpecsComponent,
+    WeatherParentComponent,
+    ItemsListComponent,
+    HomeComponent,
+    NewsDetailsComponent,
+    NewsComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatButtonModule, MatCheckboxModule,
+    NgxDatatableModule,
+    NgxSpinnerModule
   ],
+  exports: [MatButtonModule, MatCheckboxModule],
   providers: [],
   bootstrap: [AppComponent]
 })
