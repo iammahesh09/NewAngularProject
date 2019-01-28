@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col">
+    <app-teacher></app-teacher>
+  </div>
+  <div class="col">
+    <app-student></app-student>
+  </div>
+</div>
+<section>
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let sms of smslist; index as i;">{{i+1}}{{user}} : {{sms}}</li>
+  </ul>
+</section>

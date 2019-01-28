@@ -1,0 +1,13 @@
+<form>
+  <div class="form-group">
+    <label for="teacher">Student</label>
+    <div class="row">
+      <div class="col-10">
+        <input type="email" class="form-control" #msg placeholder="Student" [(ngModel)]="studentMsg" name="ngModel">
+      </div>
+      <div class="col-2">
+        <button type="button" class="btn btn-primary btn-block" (click)="studentSMS(msg.value)">Send</button>
+      </div>
+    </div>
+  </div>
+</form>

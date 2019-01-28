@@ -10,6 +10,9 @@ import { ItemsListComponent } from './dashboard/itemsData/items-list/items-list.
 import { HomeComponent } from './dashboard/home/home.component';
 import { NewsComponent } from './dashboard/Lifecycle/news/news.component';
 import { NewsDetailsComponent } from './dashboard/Lifecycle/news-details/news-details.component';
+import { IndiaComponent } from './dashboard/India/india.component';
+import { IndiaStatesComponent } from './dashboard/India/india-states/india-states.component';
+import { SmsComponent } from './dashboard/sms/sms.component';
 
 
 const routes: Routes = [
@@ -25,6 +28,9 @@ const routes: Routes = [
     { path: 'itemslist', component: ItemsListComponent },
     { path: 'news', component: NewsComponent },
     { path: 'news/:id', component: NewsDetailsComponent },
+    { path: 'india', component: IndiaComponent },
+    { path: 'india/:code', component: IndiaStatesComponent },
+    { path: 'sms', component: SmsComponent },
     { path: '**', component: PageNotFoundComponent },
 ];
 

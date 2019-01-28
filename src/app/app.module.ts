@@ -22,6 +22,11 @@ import { ItemsListComponent } from './dashboard/itemsData/items-list/items-list.
 import { HomeComponent } from './dashboard/home/home.component';
 import { NewsDetailsComponent } from './dashboard/Lifecycle/news-details/news-details.component';
 import { NewsComponent } from './dashboard/Lifecycle/news/news.component';
+import { IndiaComponent } from './dashboard/India/india.component';
+import { IndiaStatesComponent } from './dashboard/India/india-states/india-states.component';
+import { TeacherComponent } from './dashboard/sms/teacher/teacher.component';
+import { StudentComponent } from './dashboard/sms/student/student.component';
+import { SmsComponent } from './dashboard/sms/sms.component';
 
 
 @NgModule({
@@ -36,7 +41,12 @@ import { NewsComponent } from './dashboard/Lifecycle/news/news.component';
     ItemsListComponent,
     HomeComponent,
     NewsDetailsComponent,
-    NewsComponent
+    NewsComponent,
+    IndiaComponent,
+    IndiaStatesComponent,
+    TeacherComponent,
+    StudentComponent,
+    SmsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,8 @@
+<h2 class="display-4 text-center">India States</h2>
+
+<ul class="list-group">
+  <li class="list-group-item d-flex justify-content-between align-items-center" (click)="stateCode(_states)" *ngFor="let _states of indiaStates">
+    {{_states.name}}
+    <span class="badge badge-primary badge-pill">{{_states.code}}</span>
+  </li>
+</ul>
