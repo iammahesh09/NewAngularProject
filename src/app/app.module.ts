@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 
@@ -28,6 +28,9 @@ import { TeacherComponent } from './dashboard/sms/teacher/teacher.component';
 import { StudentComponent } from './dashboard/sms/student/student.component';
 import { SmsComponent } from './dashboard/sms/sms.component';
 import { DemoComponent } from './dashboard/home/demo/demo.component';
+import { FormsComponent } from './dashboard/forms/forms.component';
+import { ModelDrivenFormComponent } from './dashboard/forms/ModelDrivenForm/ModelDrivenForm.component';
+import { TemplateDrivenFormsComponent } from './dashboard/forms/TemplateDrivenForms/TemplateDrivenForms.component';
 
 
 @NgModule({
@@ -48,7 +51,10 @@ import { DemoComponent } from './dashboard/home/demo/demo.component';
     TeacherComponent,
     StudentComponent,
     SmsComponent,
-    DemoComponent
+    DemoComponent,
+    FormsComponent,
+    ModelDrivenFormComponent,
+    TemplateDrivenFormsComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +64,9 @@ import { DemoComponent } from './dashboard/home/demo/demo.component';
     AppRoutingModule,
     MatButtonModule, MatCheckboxModule,
     NgxDatatableModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    ReactiveFormsModule
+
   ],
   exports: [MatButtonModule, MatCheckboxModule],
   providers: [],

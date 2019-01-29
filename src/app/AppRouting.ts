@@ -13,6 +13,9 @@ import { NewsDetailsComponent } from './dashboard/Lifecycle/news-details/news-de
 import { IndiaComponent } from './dashboard/India/india.component';
 import { IndiaStatesComponent } from './dashboard/India/india-states/india-states.component';
 import { SmsComponent } from './dashboard/sms/sms.component';
+import { FormsComponent } from './dashboard/forms/forms.component';
+import { ModelDrivenFormComponent } from './dashboard/forms/ModelDrivenForm/ModelDrivenForm.component';
+import { TemplateDrivenFormsComponent } from './dashboard/forms/TemplateDrivenForms/TemplateDrivenForms.component';
 
 
 const routes: Routes = [
@@ -31,6 +34,13 @@ const routes: Routes = [
     { path: 'india', component: IndiaComponent },
     { path: 'india/:code', component: IndiaStatesComponent },
     { path: 'sms', component: SmsComponent },
+    {
+        path: 'forms', component: FormsComponent, children: [
+            { path: '', redirectTo: 'FormsComponent', pathMatch: 'full' },
+            { path: 'ModelDrivenForms', component: ModelDrivenFormComponent },
+            { path: 'TemplateDrivenForms', component: TemplateDrivenFormsComponent }
+        ]
+    },
     { path: '**', component: PageNotFoundComponent },
 ];
 
