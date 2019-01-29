@@ -27,6 +27,7 @@ import { IndiaStatesComponent } from './dashboard/India/india-states/india-state
 import { TeacherComponent } from './dashboard/sms/teacher/teacher.component';
 import { StudentComponent } from './dashboard/sms/student/student.component';
 import { SmsComponent } from './dashboard/sms/sms.component';
+import { DemoComponent } from './dashboard/home/demo/demo.component';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { SmsComponent } from './dashboard/sms/sms.component';
     IndiaStatesComponent,
     TeacherComponent,
     StudentComponent,
-    SmsComponent
+    SmsComponent,
+    DemoComponent
   ],
   imports: [
     BrowserModule,

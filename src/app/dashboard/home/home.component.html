@@ -1,3 +1,7 @@
-<p>
-  home works!
-</p>
+<p>home works!</p>
+<input type="text" #parent placeholder="Enter name">
+<button type="button" (click)="sendData(parent.value)">Send</button>
+
+<hr />
+
+<app-demo [parentText]="title"></app-demo>
