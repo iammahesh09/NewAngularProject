@@ -30,7 +30,7 @@
         <input type="text" class="form-control" formControlName="phone" [ngClass]="{ 'is-invalid': submitted && _formUser.phone.errors }">
         <div *ngIf="submitted && _formUser.email.errors" class="invalid-feedback">
           <div *ngIf="_formUser.email.errors.required">Phone is required</div>
-          <div *ngIf="_formUser.email.errors.pattern">Phone must be 10 numbers</div>
+          <div *ngIf="_formUser.email.errors.minLength">Phone must be 10 numbers</div>
         </div>
       </div>
       <div class="form-group">
@@ -41,7 +41,7 @@
         </select>
       </div>
       <div class="form-group form-check">
-        <input type="checkbox" class="form-check-input" formControlName="whatsapp" value="false">
+        <input type="checkbox" class="form-check-input" formControlName="whatsapp">
         <label class="form-check-label">are you using whatsapp</label>
       </div>
       <button class="btn btn-primary">Submit</button>

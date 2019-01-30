@@ -19,6 +19,7 @@ export class ModelDrivenFormComponent implements OnInit {
 
   userForm: FormGroup;
   submitted: boolean = false;
+  username: any;
 
   constructor(private _formsService: FormsService, private _formBuilder: FormBuilder) { }
 
@@ -29,7 +30,7 @@ export class ModelDrivenFormComponent implements OnInit {
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
       email: ['', [Validators.required, Validators.email, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]],
-      phone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('[1-9]{1}[0-9]{9}]')]],
+      phone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
       language: ['', Validators.required],
       whatsapp: [''],
     });
