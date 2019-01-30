@@ -25,20 +25,31 @@ export class ModelDrivenFormComponent implements OnInit {
 
   ngOnInit() {
     this._formsService.sendTitle(this.title);
-    const username = this._formBuilder.group({
+
+    const _username = this._formBuilder.group({
       firstname: ['', Validators.required],
       lastname: ['', Validators.required]
     })
+
+    const _phone = this._formBuilder.group({
+      area_code: ["", Validators.required],
+      tel_num: ["", Validators.required]
+    })
+
     this.userForm = this._formBuilder.group({
-      username: username,
+      username: _username,
       email: ['', [Validators.required, Validators.email, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]],
-      phone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+      mobile: this._formBuilder.array([]),
       language: ['', Validators.required],
       whatsapp: [''],
     });
   }
 
   get _formUser() { return this.userForm.controls; }
+
+  get phoneForms() {
+    return this.myForm.get('phones') as FormArray
+  }
 
   onSubmit() {
     this.submitted = true;
