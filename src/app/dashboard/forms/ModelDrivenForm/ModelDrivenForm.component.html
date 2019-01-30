@@ -1,27 +1,41 @@
 <div class="card mt-5">
   <div class="card-body">
-    <form [formGroup]="myform" novalidate (ngSubmit)="onSubmit()">
-      <div class="form-row" formGroupName="username">
-        <div class="col-md-4 mb-3">
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <div class="col-md mb-3">
           <label for="">First name</label>
-          <input type="text" class="form-control" formControlName="firstname" required>
+          <input type="text" class="form-control" formControlName="firstname" [ngClass]="{ 'is-invalid': submitted && _formUser.firstname.errors }">
+          <div *ngIf="submitted && _formUser.email.errors" class="invalid-feedback">
+            <div *ngIf="_formUser.firstname.errors.required">Firstname is required</div>
+          </div>
         </div>
-        <div class="col-md-4 mb-3">
+        <div class="col-md mb-3">
           <label for="">Last name</label>
-          <input type="text" class="form-control" formControlName="lastname" required>
+          <input type="text" class="form-control" formControlName="lastname" [ngClass]="{ 'is-invalid': submitted && _formUser.lastname.errors }">
+          <div *ngIf="submitted && _formUser.email.errors" class="invalid-feedback">
+            <div *ngIf="_formUser.lastname.errors.required">Lastname is required</div>
+          </div>
         </div>
       </div>
       <div class="form-group">
         <label for="">Email address</label>
-        <input type="email" class="form-control" formControlName="email" required>
+        <input type="text" class="form-control" formControlName="email" [ngClass]="{ 'is-invalid': submitted && _formUser.email.errors }">
+        <div *ngIf="submitted && _formUser.email.errors" class="invalid-feedback">
+          <div *ngIf="_formUser.email.errors.required">Email is required</div>
+          <div *ngIf="_formUser.email.errors.pattern">Email must be a valid email address</div>
+        </div>
       </div>
       <div class="form-group">
         <label for="">Phone</label>
-        <input type="tel" class="form-control" formControlName="phone" required>
+        <input type="text" class="form-control" formControlName="phone" [ngClass]="{ 'is-invalid': submitted && _formUser.phone.errors }">
+        <div *ngIf="submitted && _formUser.email.errors" class="invalid-feedback">
+          <div *ngIf="_formUser.email.errors.required">Phone is required</div>
+          <div *ngIf="_formUser.email.errors.pattern">Phone must be 10 numbers</div>
+        </div>
       </div>
       <div class="form-group">
         <label>Languages </label>
-        <select class="form-control" formControlName="language" required>
+        <select class="form-control" formControlName="language" [ngClass]="{ 'is-invalid': submitted && _formUser.language.errors }">
           <option disabled>Please select a language</option>
           <option *ngFor="let lang of _languages" [value]="lang">{{lang}}</option>
         </select>
@@ -30,10 +44,7 @@
         <input type="checkbox" class="form-check-input" formControlName="whatsapp" value="false">
         <label class="form-check-label">are you using whatsapp</label>
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button class="btn btn-primary">Submit</button>
     </form>
-  </div>
-  <div class="card-footer" *ngIf="_myform">
-    {{_myform.value | json}}
   </div>
 </div>
