@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsService } from '../../services/forms.service';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-model-driven-form',
@@ -31,11 +31,6 @@ export class ModelDrivenFormComponent implements OnInit {
       lastname: ['', Validators.required]
     })
 
-    const _phone = this._formBuilder.group({
-      area_code: ["", Validators.required],
-      tel_num: ["", Validators.required]
-    })
-
     this.userForm = this._formBuilder.group({
       username: _username,
       email: ['', [Validators.required, Validators.email, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]],
@@ -47,8 +42,22 @@ export class ModelDrivenFormComponent implements OnInit {
 
   get _formUser() { return this.userForm.controls; }
 
-  get phoneForms() {
-    return this.myForm.get('phones') as FormArray
+  get mobileForms() {
+    return this.userForm.get('mobile') as FormArray;
+  }
+
+  addMobile() {
+    const _phone = this._formBuilder.group({
+      area_code: ["", Validators.required],
+      tel_num: ["", Validators.required]
+    });
+
+    this.mobileForms.push(_phone);
+  }
+
+  deleteMobile(i) {
+    console.log(i);
+    this.mobileForms.removeAt(i)
   }
 
   onSubmit() {

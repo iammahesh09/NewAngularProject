@@ -27,24 +27,27 @@
         </div>
       </div>
 
-      <div class="form-row" formGroupName="mobile">
-        <div class="col-2 mb-3">
-          <label for="">Area Code</label>
-          <input type="text" class="form-control" formControlName="area_code" [ngClass]="{ 'is-invalid': submitted && _formUser._phone.area_code.errors }">
-          <div *ngIf="submitted && _formUser._phone.area_code.errors" class="invalid-feedback">
-            <div *ngIf="_formUser._phone.area_code.errors.required">area code is required</div>
+      <button class="btn btn-success btn-block" (click)="addMobile()">Add Phone Number</button>
+      <div formArrayName="mobile">
+        <div class="row" *ngFor="let _phone of mobileForms.controls; let i=index" [formGroupName]="i">
+          <div class="col-2 mb-3">
+            <label for="">Area Code</label>
+            <input type="text" class="form-control" formControlName="area_code" [ngClass]="{ 'is-invalid': submitted && _formUser._phone.area_code.errors }">
+            <div *ngIf="submitted && _formUser._phone.area_code.errors" class="invalid-feedback">
+              <div *ngIf="_formUser._phone.area_code.errors.required">area code is required</div>
+            </div>
           </div>
-        </div>
-        <div class="col-8 mb-3">
-          <label for="">Telephone</label>
-          <input type="text" class="form-control" formControlName="tel_num" [ngClass]="{ 'is-invalid': submitted && _formUser._phone.tel_num.errors }">
-          <div *ngIf="submitted && _formUser._phone.tel_num.errors" class="invalid-feedback">
-            <div *ngIf="_formUser._phone.tel_num.errors.required">Lastname is required</div>
+          <div class="col-8 mb-3">
+            <label for="">Telephone</label>
+            <input type="text" class="form-control" formControlName="tel_num" [ngClass]="{ 'is-invalid': submitted && _formUser._phone.tel_num.errors }">
+            <div *ngIf="submitted && _formUser._phone.tel_num.errors" class="invalid-feedback">
+              <div *ngIf="_formUser._phone.tel_num.errors.required">Lastname is required</div>
+            </div>
           </div>
-        </div>
-        <div class="col-2 mb-3">
-          <label for="">&nbsp;</label>
-          <button class="btn btn-success btn-block">Add More</button>
+          <div class="col-2 mb-3">
+            <label for="">&nbsp;</label>
+            <button class="btn btn-danger btn-block" (click)="deleteMobile(i)">Delete</button>
+          </div>
         </div>
       </div>
 
