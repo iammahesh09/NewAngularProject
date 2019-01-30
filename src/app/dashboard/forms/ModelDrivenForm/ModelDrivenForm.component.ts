@@ -25,10 +25,12 @@ export class ModelDrivenFormComponent implements OnInit {
 
   ngOnInit() {
     this._formsService.sendTitle(this.title);
-
-    this.userForm = this._formBuilder.group({
+    const username = this._formBuilder.group({
       firstname: ['', Validators.required],
-      lastname: ['', Validators.required],
+      lastname: ['', Validators.required]
+    })
+    this.userForm = this._formBuilder.group({
+      username: username,
       email: ['', [Validators.required, Validators.email, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]],
       phone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
       language: ['', Validators.required],
@@ -46,7 +48,7 @@ export class ModelDrivenFormComponent implements OnInit {
     }
     console.log('Form Submitted!');
     console.log(this.userForm.value);
-    // this.myform.reset();
+    this.userForm.reset();
 
   }
 
