@@ -26,12 +26,12 @@ export class IndiaStatesComponent implements OnInit {
     )
 
 
-    // this._indiaService.getStateDetails(_code).subscribe(
-    //   res => {
-    //     console.log(res);
-    //   },
-    //   error => console.log(error)
-    // );
+    this._indiaService.getStateDetails(_code).subscribe(
+      res => {
+        console.log(res);
+      },
+      error => console.log(error)
+    );
 
   }
 

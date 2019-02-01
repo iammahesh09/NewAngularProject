@@ -1,7 +1,7 @@
 <p>home works!</p>
 <input type="text" #parent placeholder="Enter name">
 <button type="button" (click)="sendData(parent.value)">Send</button>
-
+<button (click)="throwError()">Error</button>
 <hr />
 
 <app-demo [parentText]="title"></app-demo>

@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, AfterViewInit, AfterContentInit, ContentChild } from '@angular/core';
 import { DemoComponent } from './demo/demo.component';
+import { SlackService } from '../services/slack.service';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,11 @@ export class HomeComponent implements OnInit, AfterViewInit, AfterContentInit {
 
   @ContentChild(DemoComponent) _contentChild: DemoComponent;
 
-  constructor() { }
+  constructor(private slackService: SlackService) { }
+
+  throwError() {
+    this.slackService.postErrorOnSlack(new Error('Infinity Error'));
+  }
 
   sendData(data) {
     this.title = data;

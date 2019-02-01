@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule, MatCheckboxModule } from '@angular/material';
@@ -31,6 +31,7 @@ import { DemoComponent } from './dashboard/home/demo/demo.component';
 import { FormsComponent } from './dashboard/forms/forms.component';
 import { ModelDrivenFormComponent } from './dashboard/forms/ModelDrivenForm/ModelDrivenForm.component';
 import { TemplateDrivenFormsComponent } from './dashboard/forms/TemplateDrivenForms/TemplateDrivenForms.component';
+import { GlobalErrorHandler } from './dashboard/services/global.errorHandler';
 
 
 @NgModule({
@@ -69,7 +70,7 @@ import { TemplateDrivenFormsComponent } from './dashboard/forms/TemplateDrivenFo
 
   ],
   exports: [MatButtonModule, MatCheckboxModule],
-  providers: [],
+  providers: [{ provide: ErrorHandler, useClass: GlobalErrorHandler }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
