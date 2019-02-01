@@ -18,9 +18,6 @@ export class HomeComponent implements OnInit, AfterViewInit, AfterContentInit {
 
   constructor(private slackService: SlackService) { }
 
-  throwError() {
-    this.slackService.postErrorOnSlack(new Error('Infinity Error'));
-  }
 
   sendData(data) {
     this.title = data;

@@ -32,6 +32,7 @@ import { FormsComponent } from './dashboard/forms/forms.component';
 import { ModelDrivenFormComponent } from './dashboard/forms/ModelDrivenForm/ModelDrivenForm.component';
 import { TemplateDrivenFormsComponent } from './dashboard/forms/TemplateDrivenForms/TemplateDrivenForms.component';
 import { GlobalErrorHandler } from './dashboard/services/global.errorHandler';
+import { RxjsComponent } from './dashboard/rxjs/rxjs.component';
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import { GlobalErrorHandler } from './dashboard/services/global.errorHandler';
     DemoComponent,
     FormsComponent,
     ModelDrivenFormComponent,
-    TemplateDrivenFormsComponent
+    TemplateDrivenFormsComponent,
+    RxjsComponent
   ],
   imports: [
     BrowserModule,
