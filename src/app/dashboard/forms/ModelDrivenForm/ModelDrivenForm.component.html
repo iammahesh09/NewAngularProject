@@ -4,56 +4,26 @@
       <div class="form-row" formGroupName="username">
         <div class="col-md mb-3">
           <label for="">First name</label>
-          <input type="text" class="form-control" formControlName="firstname" [ngClass]="{ 'is-invalid': submitted && _formUser._username.firstname.errors }">
-          <div *ngIf="submitted && _formUser._username.firstname.errors" class="invalid-feedback">
-            <div *ngIf="_formUser._username.firstname.errors.required">Firstname is required</div>
-          </div>
+          <input type="text" class="form-control" formControlName="firstname">
         </div>
         <div class="col-md mb-3">
           <label for="">Last name</label>
-          <input type="text" class="form-control" formControlName="lastname" [ngClass]="{ 'is-invalid': submitted && _formUser._username.lastname.errors }">
-          <div *ngIf="submitted && _formUser._username.lastname.errors" class="invalid-feedback">
-            <div *ngIf="_formUser._username.lastname.errors.required">Lastname is required</div>
-          </div>
+          <input type="text" class="form-control" formControlName="lastname">
         </div>
       </div>
 
       <div class="form-group">
         <label for="">Email address</label>
-        <input type="text" class="form-control" formControlName="email" [ngClass]="{ 'is-invalid': submitted && _formUser.email.errors }">
-        <div *ngIf="submitted && _formUser.email.errors" class="invalid-feedback">
-          <div *ngIf="_formUser.email.errors.required">Email is required</div>
-          <div *ngIf="_formUser.email.errors.pattern">Email must be a valid email address</div>
-        </div>
+        <input type="text" class="form-control" formControlName="email">
       </div>
-
-      <button class="btn btn-success btn-block" (click)="addMobile()">Add Phone Number</button>
-      <div formArrayName="mobile">
-        <div class="row" *ngFor="let _phone of mobileForms.controls; let i=index" [formGroupName]="i">
-          <div class="col-2 mb-3">
-            <label for="">Area Code</label>
-            <input type="text" class="form-control" formControlName="area_code" [ngClass]="{ 'is-invalid': submitted && _formUser._phone.area_code.errors }">
-            <div *ngIf="submitted && _formUser._phone.area_code.errors" class="invalid-feedback">
-              <div *ngIf="_formUser._phone.area_code.errors.required">area code is required</div>
-            </div>
-          </div>
-          <div class="col-8 mb-3">
-            <label for="">Telephone</label>
-            <input type="text" class="form-control" formControlName="tel_num" [ngClass]="{ 'is-invalid': submitted && _formUser._phone.tel_num.errors }">
-            <div *ngIf="submitted && _formUser._phone.tel_num.errors" class="invalid-feedback">
-              <div *ngIf="_formUser._phone.tel_num.errors.required">Lastname is required</div>
-            </div>
-          </div>
-          <div class="col-2 mb-3">
-            <label for="">&nbsp;</label>
-            <button class="btn btn-danger btn-block" (click)="deleteMobile(i)">Delete</button>
-          </div>
-        </div>
+      <div class="form-group">
+        <label for="">Mobile</label>
+        <input type="text" class="form-control" formControlName="mobile">
       </div>
 
       <div class="form-group">
         <label>Languages </label>
-        <select class="form-control" formControlName="language" [ngClass]="{ 'is-invalid': submitted && _formUser.language.errors }">
+        <select class="form-control" formControlName="language">
           <option disabled>Please select a language</option>
           <option *ngFor="let lang of _languages" [value]="lang">{{lang}}</option>
         </select>

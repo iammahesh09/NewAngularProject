@@ -27,37 +27,17 @@ export class ModelDrivenFormComponent implements OnInit {
     this._formsService.sendTitle(this.title);
 
     const _username = this._formBuilder.group({
-      firstname: ['', Validators.required],
-      lastname: ['', Validators.required]
+      firstname: [''],
+      lastname: ['']
     })
 
     this.userForm = this._formBuilder.group({
       username: _username,
-      email: ['', [Validators.required, Validators.email, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]],
-      mobile: this._formBuilder.array([]),
-      language: ['', Validators.required],
+      email: [''],
+      mobile: [''],
+      language: [''],
       whatsapp: [''],
     });
-  }
-
-  get _formUser() { return this.userForm.controls; }
-
-  get mobileForms() {
-    return this.userForm.get('mobile') as FormArray;
-  }
-
-  addMobile() {
-    const _phone = this._formBuilder.group({
-      area_code: ["", Validators.required],
-      tel_num: ["", Validators.required]
-    });
-
-    this.mobileForms.push(_phone);
-  }
-
-  deleteMobile(i) {
-    console.log(i);
-    this.mobileForms.removeAt(i)
   }
 
   onSubmit() {
@@ -66,10 +46,8 @@ export class ModelDrivenFormComponent implements OnInit {
     if (this.userForm.invalid) {
       return;
     }
-    console.log('Form Submitted!');
-    console.log(this.userForm.value);
-    this.userForm.reset();
-
+    console.log(this.userForm);
+    // this.userForm.reset();
   }
 
   form_validation_messages = {
