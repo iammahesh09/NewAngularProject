@@ -11,11 +11,13 @@ export class ModelDrivenFormComponent implements OnInit {
 
   title: String = 'Model Driven Form';
 
-  _languages: string[] = [
+  _languages: String[] = [
     'English',
     'French',
     'German',
   ];
+
+  _proficiency: String[] = ['beginner', 'intermediate', 'advanced']
 
   userForm: FormGroup;
   submitted: boolean = false;
@@ -36,6 +38,12 @@ export class ModelDrivenFormComponent implements OnInit {
       email: [''],
       mobile: [''],
       language: [''],
+      // Create Skill Form Group
+      skills: this._formBuilder.group({
+        skillName: [''],
+        skillExperience: [''],
+        proficiency: [''],
+      }),
       whatsapp: [''],
     });
   }
@@ -46,7 +54,8 @@ export class ModelDrivenFormComponent implements OnInit {
     if (this.userForm.invalid) {
       return;
     }
-    console.log(this.userForm);
+    // console.log(this.userForm);
+    console.log(this.userForm.value);
     // this.userForm.reset();
   }
 
