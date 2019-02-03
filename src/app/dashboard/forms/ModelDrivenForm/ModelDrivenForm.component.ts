@@ -57,11 +57,11 @@ export class ModelDrivenFormComponent implements OnInit {
       email: 'mahesh@gmail.com',
       mobile: '9959012345',
       language: 'English',
-      skills: {
-        skillName: 'Angular',
-        skillExperience: 3,
-        proficiency: 'advanced'
-      },
+      // skills: {
+      //   skillName: 'Angular',
+      //   skillExperience: 3,
+      //   proficiency: 'advanced'
+      // },
       whatsapp: true
     })
   }
