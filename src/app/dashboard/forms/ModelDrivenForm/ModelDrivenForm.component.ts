@@ -25,6 +25,8 @@ export class ModelDrivenFormComponent implements OnInit {
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
   mobilePattern = '[789][0-9]{9}';
 
+  mobileLength = 0;
+
   constructor(private _formsService: FormsService, private _formBuilder: FormBuilder) { }
 
   ngOnInit() {
@@ -48,6 +50,14 @@ export class ModelDrivenFormComponent implements OnInit {
       }),
       whatsapp: [''],
     });
+
+    this.userForm.get('mobile').valueChanges.subscribe(
+      value => {
+        this.mobileLength = value.length;
+      }
+    )
+
+
   }
 
   setDataLoad() {

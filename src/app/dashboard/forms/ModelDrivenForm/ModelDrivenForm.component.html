@@ -34,12 +34,18 @@
       <!-- Mobile -->
       <div class="form-group">
         <label for="">Mobile</label>
-        <input type="text" class="form-control" maxlength="10" formControlName="mobile" [ngClass]="{'is-invalid': ((userForm.get('mobile').touched || userForm.get('mobile').dirty) && userForm.get('mobile').errors)}">
+        <div class="input-group mb-2">
+          <input type="text" class="form-control" maxlength="10" formControlName="mobile" [ngClass]="{'is-invalid': ((userForm.get('mobile').touched || userForm.get('mobile').dirty) && userForm.get('mobile').errors)}">
+          <div class="input-group-prepend">
+            <div class="input-group-text">{{mobileLength}}</div>
+          </div>
+        </div>
         <div class="invalid-feedback" *ngIf="((userForm.get('mobile').touched || userForm.get('mobile').dirty) && userForm.get('mobile').errors)">
           <span *ngIf="userForm.get('mobile').errors.required">Mobile is required</span>
           <span *ngIf="userForm.get('mobile').errors.pattern || userForm.get('mobile').errors.minLength || userForm.get('mobile').errors.maxLength">Mobile
             number must be greater than and less than 10 numbers </span>
         </div>
+
       </div>
       <!-- Languages -->
       <div class="form-group">
