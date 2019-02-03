@@ -22,6 +22,8 @@ export class ModelDrivenFormComponent implements OnInit {
   userForm: FormGroup;
   submitted: boolean = false;
   username: any;
+  emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
+  mobilePattern = '[789][0-9]{9}';
 
   constructor(private _formsService: FormsService, private _formBuilder: FormBuilder) { }
 
@@ -29,26 +31,26 @@ export class ModelDrivenFormComponent implements OnInit {
     this._formsService.sendTitle(this.title);
 
     const _username = this._formBuilder.group({
-      firstname: [''],
-      lastname: ['']
+      firstname: ['', [Validators.required, Validators.minLength(3)]],
+      lastname: ['', [Validators.required, Validators.minLength(2)]]
     })
 
     this.userForm = this._formBuilder.group({
       username: _username,
-      email: [''],
-      mobile: [''],
+      email: ['', [Validators.required, Validators.email, Validators.pattern(this.emailPattern)]],
+      mobile: ['', [Validators.required, Validators.pattern(this.mobilePattern), Validators.maxLength(10), Validators.minLength(10)]],
       language: [''],
       // Create Skill Form Group
       skills: this._formBuilder.group({
-        skillName: [''],
-        skillExperience: [''],
-        proficiency: [''],
+        skillName: ['', [Validators.required]],
+        skillExperience: ['', [Validators.required]],
+        proficiency: ['', [Validators.required]],
       }),
       whatsapp: [''],
     });
   }
 
-  setDataLoad(): void {
+  setDataLoad() {
     this.userForm.patchValue({
       username: {
         firstname: 'Mahesh',
@@ -57,11 +59,11 @@ export class ModelDrivenFormComponent implements OnInit {
       email: 'mahesh@gmail.com',
       mobile: '9959012345',
       language: 'English',
-      // skills: {
-      //   skillName: 'Angular',
-      //   skillExperience: 3,
-      //   proficiency: 'advanced'
-      // },
+      skills: {
+        skillName: 'Angular',
+        skillExperience: 3,
+        proficiency: 'advanced'
+      },
       whatsapp: true
     })
   }
@@ -73,7 +75,7 @@ export class ModelDrivenFormComponent implements OnInit {
       return;
     }
     // console.log(this.userForm);
-    console.log(this.userForm.value);
+    console.log(this.userForm);
     // this.userForm.reset();
   }
 

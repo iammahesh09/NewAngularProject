@@ -1,42 +1,74 @@
 <div class="card mt-5">
   <div class="card-body">
     <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <!-- User Name -->
       <div class="form-row" formGroupName="username">
         <div class="col-md mb-3">
           <label for="">First name</label>
-          <input type="text" class="form-control" formControlName="firstname">
+          <input type="text" class="form-control" formControlName="firstname" [ngClass]="{'is-invalid': ((userForm.get('username').controls.firstname.touched || userForm.get('username').controls.firstname.dirty) && userForm.get('username').controls.firstname.errors)}">
+          <div class="invalid-feedback" *ngIf="((userForm.get('username').controls.firstname.touched || userForm.get('username').controls.firstname.dirty) && userForm.get('username').controls.firstname.errors)">
+            <span *ngIf="userForm.get('username').controls.firstname.errors.required">Firstname is required</span>
+            <span *ngIf="userForm.get('username').controls.firstname.errors.minLength">Firstname must be greater than 3
+              characters</span>
+          </div>
         </div>
         <div class="col-md mb-3">
           <label for="">Last name</label>
-          <input type="text" class="form-control" formControlName="lastname">
+          <input type="text" class="form-control" formControlName="lastname" [ngClass]="{'is-invalid': ((userForm.get('username').controls.lastname.touched || userForm.get('username').controls.lastname.dirty) && userForm.get('username').controls.lastname.errors)}">
+          <div class="invalid-feedback" *ngIf="((userForm.get('username').controls.lastname.touched || userForm.get('username').controls.lastname.dirty) && userForm.get('username').controls.lastname.errors)">
+            <span *ngIf="userForm.get('username').controls.lastname.errors.required">Lastname is required</span>
+            <span *ngIf="userForm.get('username').controls.lastname.errors.minLength">Lastname must be greater than 3
+              characters</span>
+          </div>
         </div>
       </div>
-
+      <!-- Email address -->
       <div class="form-group">
         <label for="">Email address</label>
-        <input type="text" class="form-control" formControlName="email">
+        <input type="text" class="form-control" formControlName="email" [ngClass]="{'is-invalid': ((userForm.get('email').touched || userForm.get('email').dirty) && userForm.get('email').errors)}">
+        <div class="invalid-feedback" *ngIf="((userForm.get('email').touched || userForm.get('email').dirty) && userForm.get('email').errors)">
+          <span *ngIf="userForm.get('email').errors.required">Email is required</span>
+          <span *ngIf="userForm.get('email').errors.pattern">Please write email pattern</span>
+        </div>
       </div>
+      <!-- Mobile -->
       <div class="form-group">
         <label for="">Mobile</label>
-        <input type="text" class="form-control" formControlName="mobile">
+        <input type="text" class="form-control" maxlength="10" formControlName="mobile" [ngClass]="{'is-invalid': ((userForm.get('mobile').touched || userForm.get('mobile').dirty) && userForm.get('mobile').errors)}">
+        <div class="invalid-feedback" *ngIf="((userForm.get('mobile').touched || userForm.get('mobile').dirty) && userForm.get('mobile').errors)">
+          <span *ngIf="userForm.get('mobile').errors.required">Mobile is required</span>
+          <span *ngIf="userForm.get('mobile').errors.pattern || userForm.get('mobile').errors.minLength || userForm.get('mobile').errors.maxLength">Mobile
+            number must be greater than and less than 10 numbers </span>
+        </div>
       </div>
-
+      <!-- Languages -->
       <div class="form-group">
         <label>Languages </label>
-        <select class="form-control" formControlName="language">
+        <select class="form-control" formControlName="language" [ngClass]="{'is-invalid': ((userForm.get('language').touched || userForm.get('language').dirty) && userForm.get('language').errors)}">
           <option disabled>Please select a language</option>
           <option *ngFor="let lang of _languages" [value]="lang">{{lang}}</option>
         </select>
+        <div class="invalid-feedback" *ngIf="((userForm.get('language').touched || userForm.get('language').dirty) && userForm.get('language').errors)">
+          <span *ngIf="userForm.get('language').errors.required">Language is required</span>
+        </div>
       </div>
+      <!-- Skills -->
       <div class="form-group" formGroupName="skills">
         <div class="form-row">
           <div class="col-md mb-3">
             <label for="">Skill Name</label>
-            <input type="text" class="form-control" formControlName="skillName">
+            <input type="text" class="form-control" formControlName="skillName" [ngClass]="{'is-invalid': ((userForm.get('skills').controls.skillName.touched || userForm.get('skills').controls.skillName.dirty) && userForm.get('skills').controls.skillName.errors)}">
+            <div class="invalid-feedback" *ngIf="((userForm.get('skills').controls.skillName.touched || userForm.get('skills').controls.skillName.dirty) && userForm.get('skills').controls.skillName.errors)">
+              <span *ngIf="userForm.get('skills').controls.skillName.errors.required">skill name is required</span>
+            </div>
           </div>
           <div class="col-md mb-3">
             <label for="">Experience</label>
-            <input type="text" class="form-control" formControlName="skillExperience">
+            <input type="text" class="form-control" formControlName="skillExperience" [ngClass]="{'is-invalid': ((userForm.get('skills').controls.skillExperience.touched || userForm.get('skills').controls.skillExperience.dirty) && userForm.get('skills').controls.skillExperience.errors)}">
+            <div class="invalid-feedback" *ngIf="((userForm.get('skills').controls.skillExperience.touched || userForm.get('skills').controls.skillExperience.dirty) && userForm.get('skills').controls.skillExperience.errors)">
+              <span *ngIf="userForm.get('skills').controls.skillExperience.errors.required">skill experience is
+                required</span>
+            </div>
           </div>
         </div>
         <p>Proficiency</p>
@@ -45,13 +77,14 @@
           <label class="form-check-label text-capitalize">{{proficiency}}</label>
         </div>
       </div>
+      <!-- whatsapp -->
       <div class="form-group form-check">
         <input type="checkbox" class="form-check-input" formControlName="whatsapp">
-        <label class="form-check-label">are you using whatsapp</label>
+        <label class="form-check-label">are you using WhatsApp</label>
       </div>
       <div>
-        <button class="btn btn-primary mr-1">Submit</button>
-        <button class="btn btn-info ml-1" (click)="setDataLoad()">Load Data</button>
+        <button class="btn btn-primary mr-1" [disabled]="userForm.invalid">Submit</button>
+        <button type="button" class="btn btn-info ml-1" (click)="setDataLoad()">Load Data</button>
       </div>
     </form>
   </div>
