@@ -49,7 +49,7 @@ export class ModelDrivenFormComponent implements OnInit {
   }
 
   setDataLoad(): void {
-    this.userForm.setValue({
+    this.userForm.patchValue({
       username: {
         firstname: 'Mahesh',
         lastname: 'Chejarla'
