@@ -39,11 +39,11 @@
           <div class="input-group-prepend">
             <div class="input-group-text">{{mobileLength}}</div>
           </div>
-        </div>
-        <div class="invalid-feedback" *ngIf="((userForm.get('mobile').touched || userForm.get('mobile').dirty) && userForm.get('mobile').errors)">
-          <span *ngIf="userForm.get('mobile').errors.required">Mobile is required</span>
-          <span *ngIf="userForm.get('mobile').errors.pattern || userForm.get('mobile').errors.minLength || userForm.get('mobile').errors.maxLength">Mobile
-            number must be greater than and less than 10 numbers </span>
+          <div class="invalid-feedback" *ngIf="((userForm.get('mobile').touched || userForm.get('mobile').dirty) && userForm.get('mobile').errors)">
+            <span *ngIf="userForm.get('mobile').errors.required">Mobile is required</span>
+            <span *ngIf="userForm.get('mobile').errors.pattern || userForm.get('mobile').errors.minLength || userForm.get('mobile').errors.maxLength">Mobile
+              number must be greater than and less than 10 numbers </span>
+          </div>
         </div>
 
       </div>
@@ -79,7 +79,8 @@
         </div>
         <p>Proficiency</p>
         <div class="form-check form-check-inline" *ngFor="let proficiency of _proficiency">
-          <input class="form-check-input" type="radio" name="proficiency" formControlName="proficiency" [value]="proficiency">
+          <input class="form-check-input" type="radio" name="proficiency" formControlName="proficiency" [value]="proficiency"
+            checked>
           <label class="form-check-label text-capitalize">{{proficiency}}</label>
         </div>
       </div>
@@ -90,7 +91,9 @@
       </div>
       <div>
         <button class="btn btn-primary mr-1" [disabled]="userForm.invalid">Submit</button>
-        <button type="button" class="btn btn-info ml-1" (click)="setDataLoad()">Load Data</button>
+        <button type="button" class="btn btn-success ml-1" (click)="setDataLoad()">Load Data</button>
+        <button type="button" class="btn btn-warning ml-1" (click)="loadKeys()">Load Keys</button>
+        <button type="reset" class="btn btn-danger ml-1" (click)="resetForm()">Reset Form</button>
       </div>
     </form>
   </div>

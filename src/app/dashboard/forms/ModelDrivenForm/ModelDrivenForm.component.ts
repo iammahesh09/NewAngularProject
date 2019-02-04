@@ -41,7 +41,7 @@ export class ModelDrivenFormComponent implements OnInit {
       username: _username,
       email: ['', [Validators.required, Validators.email, Validators.pattern(this.emailPattern)]],
       mobile: ['', [Validators.required, Validators.pattern(this.mobilePattern), Validators.maxLength(10), Validators.minLength(10)]],
-      language: [''],
+      language: ['', [Validators.required]],
       // Create Skill Form Group
       skills: this._formBuilder.group({
         skillName: ['', [Validators.required]],
@@ -78,6 +78,34 @@ export class ModelDrivenFormComponent implements OnInit {
     })
   }
 
+  loadKeys() {
+    this.logKeyValuePairs(this.userForm)
+  }
+
+  logKeyValuePairs(group: FormGroup): void {
+
+    Object.keys(group.controls).forEach((key: string) => {
+
+      const abstractControl = group.get(key);
+
+      if (abstractControl instanceof FormGroup) {
+
+        this.logKeyValuePairs(abstractControl);
+
+        // Disable Nested FormGroup Fills
+        // abstractControl.disable();
+
+      } else {
+        console.log('Key = ' + key + ' && Value = ' + abstractControl.value);
+
+        // Disable All FormGroup Fills
+        // abstractControl.disable();
+
+      }
+    });
+
+  }
+
   onSubmit() {
     this.submitted = true;
 
@@ -86,7 +114,11 @@ export class ModelDrivenFormComponent implements OnInit {
     }
     // console.log(this.userForm);
     console.log(this.userForm);
-    // this.userForm.reset();
+    this.userForm.reset();
+  }
+
+  resetForm() {
+    this.userForm.reset();
   }
 
   form_validation_messages = {
