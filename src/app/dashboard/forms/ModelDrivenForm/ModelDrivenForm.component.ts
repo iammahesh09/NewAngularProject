@@ -17,7 +17,7 @@ export class ModelDrivenFormComponent implements OnInit {
     'German',
   ];
 
-  _proficiency: String[] = ['beginner', 'intermediate', 'advanced']
+  _skillLevels: String[] = ['beginner', 'intermediate', 'advanced']
 
   userForm: FormGroup;
   submitted: boolean = false;
@@ -36,7 +36,7 @@ export class ModelDrivenFormComponent implements OnInit {
     'language': '',
     'skillName': '',
     'skillExperience': '',
-    'proficiency': ''
+    'skillLevel': ''
   };
 
   form_validation_messages = {
@@ -67,8 +67,8 @@ export class ModelDrivenFormComponent implements OnInit {
     'skillExperience': {
       'required': 'skill experience is required'
     },
-    'proficiency': {
-      'required': 'proficiency is required'
+    'skillLevel': {
+      'required': 'skill level is required'
     }
 
   }
@@ -94,7 +94,7 @@ export class ModelDrivenFormComponent implements OnInit {
       skills: this._formBuilder.group({
         skillName: ['', [Validators.required]],
         skillExperience: ['', [Validators.required]],
-        proficiency: ['', [Validators.required]],
+        skillLevel: ['', [Validators.required]],
       }),
       whatsapp: [''],
     });
@@ -104,6 +104,11 @@ export class ModelDrivenFormComponent implements OnInit {
         this.mobileLength = value.length;
       }
     )
+
+    this.userForm.valueChanges.subscribe(
+      data => this.logValidationErrors(this.userForm)
+    );
+
 
 
   }
@@ -120,22 +125,17 @@ export class ModelDrivenFormComponent implements OnInit {
       skills: {
         skillName: 'Angular',
         skillExperience: 3,
-        proficiency: 'advanced'
+        skillLevel: 'advanced'
       },
       whatsapp: true
     })
   }
 
-  loadKeys() {
-    this.logKeyValuePairs(this.userForm);
-    console.log(this.formErrors);
-  }
-
-  logKeyValuePairs(group: FormGroup): void {
+  logValidationErrors(group: FormGroup = this.userForm): void {
     Object.keys(group.controls).forEach((key: string) => {
       const abstractControl = group.get(key);
       if (abstractControl instanceof FormGroup) {
-        this.logKeyValuePairs(abstractControl);
+        this.logValidationErrors(abstractControl);
       } else {
         // Clear the existing validation errors
         this.formErrors[key] = '';
