@@ -87,8 +87,9 @@ export class ModelDrivenFormComponent implements OnInit {
 
     this.userForm = this._formBuilder.group({
       username: _username,
-      email: ['', [Validators.required, Validators.email, Validators.pattern(this.emailPattern)]],
-      mobile: ['', [Validators.required, Validators.pattern(this.mobilePattern), Validators.maxLength(10), Validators.minLength(10)]],
+      contactPreference: ['email'],
+      email: [''],
+      mobile: [''],
       language: ['', [Validators.required]],
       // Create Skill Form Group
       skills: this._formBuilder.group({
@@ -109,6 +110,10 @@ export class ModelDrivenFormComponent implements OnInit {
       data => this.logValidationErrors(this.userForm)
     );
 
+    this.userForm.get('contactPreference')
+      .valueChanges.subscribe((data: string) => {
+        this.onContactPrefernceChange(data);
+      });
 
 
   }
@@ -151,6 +156,28 @@ export class ModelDrivenFormComponent implements OnInit {
     });
   }
 
+
+  onContactPrefernceChange(selectedValue: string) {
+    const phoneFormControl = this.userForm.get('mobile');
+    const emailFormControl = this.userForm.get('email');
+    if (selectedValue === 'mobile') {
+      phoneFormControl.enable();
+      phoneFormControl.setValidators([Validators.required, Validators.pattern(this.mobilePattern), Validators.maxLength(10), Validators.minLength(10)]);
+      emailFormControl.clearValidators();
+      emailFormControl.reset();
+      emailFormControl.disable();
+    } else {
+      emailFormControl.enable();
+      emailFormControl.setValidators([Validators.required, Validators.email, Validators.pattern(this.emailPattern)]);
+      phoneFormControl.clearValidators();
+      phoneFormControl.reset();
+      phoneFormControl.disable();
+    }
+
+    phoneFormControl.updateValueAndValidity();
+    emailFormControl.updateValueAndValidity();
+  }
+
   onSubmit() {
     this.submitted = true;
 
@@ -158,8 +185,7 @@ export class ModelDrivenFormComponent implements OnInit {
       return;
     }
     // console.log(this.userForm);
-    console.log(this.userForm);
-    this.userForm.reset();
+    console.log(this.userForm.value);
   }
 
   resetForm() {
