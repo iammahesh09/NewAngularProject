@@ -79,30 +79,31 @@
         <div class="card-body" [formGroupName]="i">
           <div class="form-row">
             <div class="col-sm-5">
-              <label [for]="'skillName+i'">Skill Name</label>
-              <input type="text" class="form-control" [id]="'skillName+i'" formControlName="skillName" [ngClass]="{'is-invalid': formErrors.skillName}"
+              <label [attr.for]="'skillName'+i">Skill Name</label>
+              <input type="text" class="form-control" [id]="'skillName'+i" formControlName="skillName" [ngClass]="{'is-invalid': skill.get('skillName').invalid && skill.get('skillName').touched}"
                 (blur)="logValidationErrors()">
-              <div class="invalid-feedback" *ngIf="formErrors.skillName">
-                <span>{{formErrors.skillName}}</span>
+              <div class="invalid-feedback" *ngIf="skill.get('skillName').errors?.required && skill.get('skillName').touched">
+                <span>skill name is required</span>
               </div>
             </div>
             <div class="col-sm-5">
-              <label [for]="'skillLevel+i'">Proficiency</label>
-              <select class="form-control" formControlName="skillLevel" [id]="'skillLevel+i'" [ngClass]="{'is-invalid': formErrors.skillLevel}"
+              <label [attr.for]="'skillLevel'+i">Proficiency</label>
+              <select class="form-control" formControlName="skillLevel" [id]="'skillLevel'+i" [ngClass]="{'is-invalid': skill.get('skillLevel').invalid && skill.get('skillLevel').touched}"
                 (blur)="logValidationErrors()">
                 <option disabled>Please select a skill Level</option>
                 <option *ngFor="let skillLevel of _skillLevels" [value]="skillLevel" class="text-capitalize">{{skillLevel}}</option>
               </select>
-              <div class="invalid-feedback" *ngIf="formErrors.language">
-                <span>{{formErrors.skillLevel}}</span>
+              <div class="invalid-feedback" *ngIf="skill.get('skillLevel').errors?.required && skill.get('skillLevel').touched">
+                <span>skill level is required</span>
               </div>
             </div>
             <div class="col-sm-2">
-              <label [for]="'skillExperience+i'">Experience</label>
-              <input type="text" class="form-control" formControlName="skillExperience" [id]="'skillExperience+i'"
-                [ngClass]="{'is-invalid': formErrors.skillExperience}" (blur)="logValidationErrors()">
-              <div class="invalid-feedback" *ngIf="formErrors.skillExperience">
-                <span>{{formErrors.skillExperience}}</span>
+              <label [attr.for]="'skillExperience'+i">Experience</label>
+              <input type="text" class="form-control" formControlName="skillExperience" [id]="'skillExperience'+i"
+                [ngClass]="{'is-invalid': skill.get('skillExperience').invalid && skill.get('skillExperience').touched}"
+                (blur)="logValidationErrors()">
+              <div class="invalid-feedback" *ngIf="skill.get('skillExperience').errors?.required && skill.get('skillExperience').touched">
+                <span>skill experience is required</span>
               </div>
             </div>
           </div>
