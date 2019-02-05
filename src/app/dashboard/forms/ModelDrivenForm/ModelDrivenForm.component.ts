@@ -125,6 +125,10 @@ export class ModelDrivenFormComponent implements OnInit {
     });
   }
 
+  removeSkillButton(skillGroupIndex: number): void {
+    (<FormArray>this.userForm.get('skills')).removeAt(skillGroupIndex);
+  }
+
 
   setDataLoad() {
     this.userForm.patchValue({

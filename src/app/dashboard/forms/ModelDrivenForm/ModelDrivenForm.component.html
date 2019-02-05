@@ -86,7 +86,7 @@
                 <span>skill name is required</span>
               </div>
             </div>
-            <div class="col-sm-5">
+            <div class="col-sm-4">
               <label [attr.for]="'skillLevel'+i">Proficiency</label>
               <select class="form-control" formControlName="skillLevel" [id]="'skillLevel'+i" [ngClass]="{'is-invalid': skill.get('skillLevel').invalid && skill.get('skillLevel').touched}"
                 (blur)="logValidationErrors()">
@@ -104,6 +104,12 @@
                 (blur)="logValidationErrors()">
               <div class="invalid-feedback" *ngIf="skill.get('skillExperience').errors?.required && skill.get('skillExperience').touched">
                 <span>skill experience is required</span>
+              </div>
+            </div>
+            <div class="col-sm-1" *ngIf="userForm.get('skills').length>1">
+              <label [attr.for]="'removeSkillButton'+i">&nbsp;</label>
+              <div>
+                <button type="button" class="btn btn-danger btn-md" title="Delete Skill" id="removeSkillButton" (click)="removeSkillButton(i)">X</button>
               </div>
             </div>
           </div>
