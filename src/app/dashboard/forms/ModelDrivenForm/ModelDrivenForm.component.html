@@ -62,40 +62,47 @@
         <label>Languages </label>
         <select class="form-control" formControlName="language" [ngClass]="{'is-invalid': formErrors.language}" (blur)="logValidationErrors()">
           <option disabled>Please select a language</option>
-          <option *ngFor="let lang of _languages" [value]="lang">{{lang}}</option>
+          <option *ngFor="let lang of _languages" [value]="lang" class="text-capitalize">{{lang}}</option>
         </select>
         <div class="invalid-feedback" *ngIf="formErrors.language">
           <span>{{formErrors.language}}</span>
         </div>
       </div>
       <!-- Skills -->
-      <div class="form-group" formGroupName="skills">
-        <div class="form-row">
-          <div class="col-md mb-3">
-            <label for="">Skill Name</label>
-            <input type="text" class="form-control" formControlName="skillName" [ngClass]="{'is-invalid': formErrors.skillName}"
-              (blur)="logValidationErrors()">
-            <div class="invalid-feedback" *ngIf="formErrors.skillName">
-              <span>{{formErrors.skillName}}</span>
+      <div class="form-group">
+        <button type="button" class="btn btn-primary" (click)="addSkillButtonClick()">Add Skill</button>
+      </div>
+      <div formArrayName="skills" *ngFor="let skill of userForm.get('skills').controls; let i = index" class="card bg-light mb-2">
+        <div class="card-body" [formGroupName]="i">
+          <div class="form-row">
+            <div class="col-sm-5">
+              <label for="">Skill Name</label>
+              <input type="text" class="form-control" formControlName="skillName" [ngClass]="{'is-invalid': formErrors.skillName}"
+                (blur)="logValidationErrors()">
+              <div class="invalid-feedback" *ngIf="formErrors.skillName">
+                <span>{{formErrors.skillName}}</span>
+              </div>
+            </div>
+            <div class="col-sm-5">
+              <label>Proficiency</label>
+              <select class="form-control" formControlName="skillLevel" [ngClass]="{'is-invalid': formErrors.skillLevel}"
+                (blur)="logValidationErrors()">
+                <option disabled>Please select a skill Level</option>
+                <option *ngFor="let skillLevel of _skillLevels" [value]="skillLevel" class="text-capitalize">{{skillLevel}}</option>
+              </select>
+              <div class="invalid-feedback" *ngIf="formErrors.language">
+                <span>{{formErrors.skillLevel}}</span>
+              </div>
+            </div>
+            <div class="col-sm-2">
+              <label for="">Experience</label>
+              <input type="text" class="form-control" formControlName="skillExperience" [ngClass]="{'is-invalid': formErrors.skillExperience}"
+                (blur)="logValidationErrors()">
+              <div class="invalid-feedback" *ngIf="formErrors.skillExperience">
+                <span>{{formErrors.skillExperience}}</span>
+              </div>
             </div>
           </div>
-          <div class="col-md mb-3">
-            <label for="">Experience</label>
-            <input type="text" class="form-control" formControlName="skillExperience" [ngClass]="{'is-invalid': formErrors.skillExperience}"
-              (blur)="logValidationErrors()">
-            <div class="invalid-feedback" *ngIf="formErrors.skillExperience">
-              <span>{{formErrors.skillExperience}}</span>
-            </div>
-          </div>
-        </div>
-        <p>Proficiency</p>
-        <div class="form-check form-check-inline" *ngFor="let skillLevel of _skillLevels">
-          <input class="form-check-input" type="radio" name="skillLevel" formControlName="skillLevel" [value]="skillLevel"
-            [ngClass]="{'is-invalid': formErrors.skillLevel}" (blur)="logValidationErrors()">
-          <label class="form-check-label text-capitalize">{{skillLevel}}</label>
-        </div>
-        <div class="invalid-feedback" *ngIf="formErrors.skillLevel">
-          <span>{{formErrors.skillLevel}}</span>
         </div>
       </div>
       <!-- whatsapp -->

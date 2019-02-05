@@ -27,7 +27,6 @@ export class ModelDrivenFormComponent implements OnInit {
 
   mobileLength = 0;
 
-
   formErrors = {
     'firstname': '',
     'lastname': '',
@@ -78,6 +77,7 @@ export class ModelDrivenFormComponent implements OnInit {
   constructor(private _formsService: FormsService, private _formBuilder: FormBuilder) { }
 
   ngOnInit() {
+
     this._formsService.sendTitle(this.title);
 
     const _username = this._formBuilder.group({
@@ -88,15 +88,13 @@ export class ModelDrivenFormComponent implements OnInit {
     this.userForm = this._formBuilder.group({
       username: _username,
       contactPreference: ['email'],
-      email: [''],
+      email: ['', [Validators.required, Validators.email, Validators.pattern(this.emailPattern)]],
       mobile: [''],
       language: ['', [Validators.required]],
       // Create Skill Form Group
-      skills: this._formBuilder.group({
-        skillName: ['', [Validators.required]],
-        skillExperience: ['', [Validators.required]],
-        skillLevel: ['', [Validators.required]],
-      }),
+      skills: this._formBuilder.array([
+        this.addSkillFormGroup()
+      ]),
       whatsapp: [''],
     });
 
@@ -115,8 +113,18 @@ export class ModelDrivenFormComponent implements OnInit {
         this.onContactPrefernceChange(data);
       });
 
-
   }
+  addSkillButtonClick(): void {
+    (<FormArray>this.userForm.get('skills')).push(this.addSkillFormGroup());
+  }
+  addSkillFormGroup(): FormGroup {
+    return this._formBuilder.group({
+      skillName: ['', [Validators.required]],
+      skillExperience: ['', [Validators.required]],
+      skillLevel: ['', [Validators.required]]
+    });
+  }
+
 
   setDataLoad() {
     this.userForm.patchValue({
@@ -139,17 +147,25 @@ export class ModelDrivenFormComponent implements OnInit {
   logValidationErrors(group: FormGroup = this.userForm): void {
     Object.keys(group.controls).forEach((key: string) => {
       const abstractControl = group.get(key);
+
+      this.formErrors[key] = '';
+      if (abstractControl && !abstractControl.valid && (abstractControl.touched || abstractControl.dirty)) {
+        const messages = this.form_validation_messages[key];
+        for (const errorKey in abstractControl.errors) {
+          if (errorKey) {
+            this.formErrors[key] += messages[errorKey] + ' ';
+          }
+        }
+      }
+
       if (abstractControl instanceof FormGroup) {
         this.logValidationErrors(abstractControl);
-      } else {
-        // Clear the existing validation errors
-        this.formErrors[key] = '';
-        if (abstractControl && !abstractControl.valid) {
-          const messages = this.form_validation_messages[key];
-          for (const errorKey in abstractControl.errors) {
-            if (errorKey) {
-              this.formErrors[key] += messages[errorKey] + ' ';
-            }
+      }
+
+      if (abstractControl instanceof FormArray) {
+        for (const control of abstractControl.controls) {
+          if (control instanceof FormGroup) {
+            this.logValidationErrors(control);
           }
         }
       }
