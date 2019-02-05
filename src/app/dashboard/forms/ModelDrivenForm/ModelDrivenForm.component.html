@@ -4,16 +4,16 @@
       <!-- User Name -->
       <div class="form-row" formGroupName="username">
         <div class="col-md mb-3">
-          <label for="">First name</label>
-          <input type="text" class="form-control" formControlName="firstname" [ngClass]="{'is-invalid': formErrors.firstname}"
+          <label for="firstname">First name</label>
+          <input type="text" class="form-control" id="firstname" formControlName="firstname" [ngClass]="{'is-invalid': formErrors.firstname}"
             (blur)="logValidationErrors()">
           <div class="invalid-feedback" *ngIf="formErrors.firstname">
             <span>{{formErrors.firstname}}</span>
           </div>
         </div>
         <div class="col-md mb-3">
-          <label for="">Last name</label>
-          <input type="text" class="form-control" formControlName="lastname" [ngClass]="{'is-invalid': formErrors.lastname}"
+          <label for="lastname">Last name</label>
+          <input type="text" class="form-control" id="lastname" formControlName="lastname" [ngClass]="{'is-invalid': formErrors.lastname}"
             (blur)="logValidationErrors()">
           <div class="invalid-feedback" *ngIf="formErrors.lastname">
             <span>{{formErrors.lastname}}</span>
@@ -21,22 +21,23 @@
         </div>
       </div>
       <div class="form-group">
-        <label class="control-label">Contact Preference</label>
+        <label class="control-label" for="ContactPreference">Contact Preference</label>
         <div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" value="email" formControlName="contactPreference" checked>
+            <input class="form-check-input" type="radio" id="ContactPreference" value="email" formControlName="contactPreference"
+              checked>
             <label class="form-check-label">Email</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" value="mobile" formControlName="contactPreference">
+            <input class="form-check-input" type="radio" id="ContactPreference" value="mobile" formControlName="contactPreference">
             <label class="form-check-label">Mobile</label>
           </div>
         </div>
       </div>
       <!-- Email address -->
       <div class="form-group">
-        <label for="">Email address</label>
-        <input type="text" class="form-control" formControlName="email" [ngClass]="{'is-invalid': formErrors.email}"
+        <label for="email">Email address</label>
+        <input type="text" class="form-control" id="email" formControlName="email" [ngClass]="{'is-invalid': formErrors.email}"
           (blur)="logValidationErrors()">
         <div class="invalid-feedback" *ngIf="formErrors.email">
           <span>{{formErrors.email}}</span>
@@ -44,9 +45,9 @@
       </div>
       <!-- Mobile -->
       <div class="form-group">
-        <label for="">Mobile</label>
+        <label for="mobile">Mobile</label>
         <div class="input-group mb-2">
-          <input type="text" class="form-control" maxlength="10" formControlName="mobile" [ngClass]="{'is-invalid': formErrors.mobile}"
+          <input type="text" class="form-control" id="mobile" maxlength="10" formControlName="mobile" [ngClass]="{'is-invalid': formErrors.mobile}"
             (blur)="logValidationErrors()">
           <div class="input-group-prepend">
             <div class="input-group-text">{{mobileLength}}</div>
@@ -59,8 +60,9 @@
       </div>
       <!-- Languages -->
       <div class="form-group">
-        <label>Languages </label>
-        <select class="form-control" formControlName="language" [ngClass]="{'is-invalid': formErrors.language}" (blur)="logValidationErrors()">
+        <label for="language">Languages </label>
+        <select class="form-control" formControlName="language" id="language" [ngClass]="{'is-invalid': formErrors.language}"
+          (blur)="logValidationErrors()">
           <option disabled>Please select a language</option>
           <option *ngFor="let lang of _languages" [value]="lang" class="text-capitalize">{{lang}}</option>
         </select>
@@ -70,22 +72,23 @@
       </div>
       <!-- Skills -->
       <div class="form-group">
-        <button type="button" class="btn btn-primary" (click)="addSkillButtonClick()">Add Skill</button>
+        <button type="button" [disabled]="userForm.get(skills).invalid" class="btn btn-primary" (click)="addSkillButtonClick()">Add
+          Skill</button>
       </div>
       <div formArrayName="skills" *ngFor="let skill of userForm.get('skills').controls; let i = index" class="card bg-light mb-2">
         <div class="card-body" [formGroupName]="i">
           <div class="form-row">
             <div class="col-sm-5">
-              <label for="">Skill Name</label>
-              <input type="text" class="form-control" formControlName="skillName" [ngClass]="{'is-invalid': formErrors.skillName}"
+              <label [for]="'skillName+i'">Skill Name</label>
+              <input type="text" class="form-control" [id]="'skillName+i'" formControlName="skillName" [ngClass]="{'is-invalid': formErrors.skillName}"
                 (blur)="logValidationErrors()">
               <div class="invalid-feedback" *ngIf="formErrors.skillName">
                 <span>{{formErrors.skillName}}</span>
               </div>
             </div>
             <div class="col-sm-5">
-              <label>Proficiency</label>
-              <select class="form-control" formControlName="skillLevel" [ngClass]="{'is-invalid': formErrors.skillLevel}"
+              <label [for]="'skillLevel+i'">Proficiency</label>
+              <select class="form-control" formControlName="skillLevel" [id]="'skillLevel+i'" [ngClass]="{'is-invalid': formErrors.skillLevel}"
                 (blur)="logValidationErrors()">
                 <option disabled>Please select a skill Level</option>
                 <option *ngFor="let skillLevel of _skillLevels" [value]="skillLevel" class="text-capitalize">{{skillLevel}}</option>
@@ -95,9 +98,9 @@
               </div>
             </div>
             <div class="col-sm-2">
-              <label for="">Experience</label>
-              <input type="text" class="form-control" formControlName="skillExperience" [ngClass]="{'is-invalid': formErrors.skillExperience}"
-                (blur)="logValidationErrors()">
+              <label [for]="'skillExperience+i'">Experience</label>
+              <input type="text" class="form-control" formControlName="skillExperience" [id]="'skillExperience+i'"
+                [ngClass]="{'is-invalid': formErrors.skillExperience}" (blur)="logValidationErrors()">
               <div class="invalid-feedback" *ngIf="formErrors.skillExperience">
                 <span>{{formErrors.skillExperience}}</span>
               </div>
@@ -107,11 +110,11 @@
       </div>
       <!-- whatsapp -->
       <div class="form-group form-check">
-        <input type="checkbox" class="form-check-input" formControlName="whatsapp">
-        <label class="form-check-label">are you using WhatsApp</label>
+        <input type="checkbox" class="form-check-input" id="whatsapp" formControlName="whatsapp">
+        <label class="form-check-label" for="whatsapp">are you using WhatsApp</label>
       </div>
       <div>
-        <button class="btn btn-primary mr-1" [disabled]="userForm.invalid">Submit</button>
+        <button type="submit" class="btn btn-primary mr-1" [disabled]="SubmitBtn">Submit</button>
         <button type="button" class="btn btn-success ml-1" (click)="setDataLoad()">Load Data</button>
         <button type="reset" class="btn btn-danger ml-1" (click)="resetForm()">Reset Form</button>
       </div>
