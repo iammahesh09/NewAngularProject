@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsService } from '../../services/forms.service';
+import { CommunicationService } from '../../services/communication.service';
 
 @Component({
   selector: 'app-template-driven-forms',
@@ -8,10 +8,11 @@ import { FormsService } from '../../services/forms.service';
 })
 export class TemplateDrivenFormsComponent implements OnInit {
   title: any = 'Template Driven Form'
-  constructor(private _formsService: FormsService) { }
+  constructor(private _communicationService: CommunicationService) { }
 
   ngOnInit() {
-    this._formsService.sendTitle(this.title);
+    this._communicationService.sendMessage(this.title);
+
   }
 
 }

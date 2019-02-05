@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsService } from '../services/forms.service';
+import { CommunicationService } from '../services/communication.service';
 
 @Component({
   selector: 'app-forms',
@@ -8,16 +8,12 @@ import { FormsService } from '../services/forms.service';
 })
 export class FormsComponent implements OnInit {
   title: any = 'Angular Forms';
+  menuTitle: any = 'Forms';
 
-  constructor(private _formsService: FormsService) { }
+  constructor(private _communicationService: CommunicationService) { }
 
   ngOnInit() {
-    this._formsService.getTitle().subscribe(
-      res => {
-        this.title = res;
-      },
-      err => console.log(err)
-    );
+    this._communicationService.sendMessage(this.menuTitle)
   }
 
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsService } from '../../services/forms.service';
 import { FormGroup, Validators, FormBuilder, FormArray } from '@angular/forms';
+import { CommunicationService } from '../../services/communication.service';
 
 @Component({
   selector: 'app-model-driven-form',
@@ -11,6 +11,7 @@ export class ModelDrivenFormComponent implements OnInit {
 
   title: String = 'Model Driven Form';
 
+  userData: any = [];
   _languages: String[] = [
     'English',
     'French',
@@ -74,11 +75,13 @@ export class ModelDrivenFormComponent implements OnInit {
 
 
 
-  constructor(private _formsService: FormsService, private _formBuilder: FormBuilder) { }
+  constructor(private _formBuilder: FormBuilder, private _communicationService: CommunicationService) { }
 
   ngOnInit() {
 
-    this._formsService.sendTitle(this.title);
+
+    this._communicationService.sendMessage(this.title)
+
 
     const _username = this._formBuilder.group({
       firstname: ['', [Validators.required, Validators.minLength(3)]],
@@ -95,7 +98,8 @@ export class ModelDrivenFormComponent implements OnInit {
       skills: this._formBuilder.array([
         this.addSkillFormGroup()
       ]),
-      whatsapp: [''],
+      fileUpload: [''],
+      whatsapp: ['']
     });
 
     this.userForm.get('mobile').valueChanges.subscribe(
@@ -144,6 +148,7 @@ export class ModelDrivenFormComponent implements OnInit {
         skillExperience: 3,
         skillLevel: 'advanced'
       },
+      fileUpload: '',
       whatsapp: true
     })
   }
@@ -198,14 +203,21 @@ export class ModelDrivenFormComponent implements OnInit {
     emailFormControl.updateValueAndValidity();
   }
 
+  upLoadFile(flle) {
+    this.userData.file = flle[0];
+    console.log(this.userData.fileUpload);
+  }
+
   onSubmit() {
     this.submitted = true;
 
     if (this.userForm.invalid) {
       return;
     }
-    // console.log(this.userForm);
-    console.log(this.userForm.value);
+    this.userData.push(this.userForm.value);
+
+    console.log(this.userData)
+
   }
 
   resetForm() {

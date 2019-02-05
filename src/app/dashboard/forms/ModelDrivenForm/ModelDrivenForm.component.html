@@ -63,7 +63,7 @@
         <label for="language">Languages </label>
         <select class="form-control" formControlName="language" id="language" [ngClass]="{'is-invalid': formErrors.language}"
           (blur)="logValidationErrors()">
-          <option disabled>Please select a language</option>
+          <option disabled selected>Please select a language</option>
           <option *ngFor="let lang of _languages" [value]="lang" class="text-capitalize">{{lang}}</option>
         </select>
         <div class="invalid-feedback" *ngIf="formErrors.language">
@@ -113,6 +113,14 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+      <!-- File Upload -->
+      <div class="form-group">
+        <label for="fileUpload">File Upload</label>
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="fileUpload" formControlName="fileUpload" (change)="upLoadFile($event.target.files)">
+          <label class="custom-file-label" for="fileUpload">Choose file...</label>
         </div>
       </div>
       <!-- whatsapp -->
