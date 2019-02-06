@@ -19,9 +19,4 @@ export class IndiaService {
   }
 
 
-
-  getStateDetails(codeName) {
-    return this._http.get(this._indiaUrl)
-  }
-
 }

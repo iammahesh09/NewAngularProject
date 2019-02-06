@@ -13,7 +13,7 @@ export class IndiaComponent implements OnInit {
   constructor(private _indiaServices: IndiaService, private _router: Router) { }
 
   stateCode(stateCode) {
-    this._router.navigate(['/india', stateCode.code]);
+    this._router.navigate(['/india', stateCode.code], { queryParams: { order: 'popular' }, fragment: 'loading' });
   }
 
   ngOnInit() {
