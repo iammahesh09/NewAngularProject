@@ -5,3 +5,10 @@
 <hr />
 
 <app-demo [parentText]="title"></app-demo>
+<hr>
+<button (click)="showTrue()">True</button>
+<button (click)="showFalse()">False</button>
+<p *ngIf="isTrue; else notTrue">Is ture</p>
+<ng-template #notTrue>
+  <p>is False</p>
+</ng-template>

@@ -11,13 +11,21 @@ import { SlackService } from '../services/slack.service';
 export class HomeComponent implements OnInit, AfterViewInit, AfterContentInit {
 
   title: String = 'Hello World';
-
+  isTrue: Boolean;
   @ViewChild(DemoComponent) _viewChild: DemoComponent;
 
   @ContentChild(DemoComponent) _contentChild: DemoComponent;
 
   constructor(private slackService: SlackService) { }
 
+
+  showTrue() {
+    this.isTrue = true;
+  }
+
+  showFalse() {
+    this.isTrue = false;
+  }
 
   sendData(data) {
     this.title = data;

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SmsService } from '../../services/sms.service';
+import { SMS } from '../sms.model';
 
 @Component({
   selector: 'app-teacher',
@@ -7,15 +8,21 @@ import { SmsService } from '../../services/sms.service';
   styleUrls: ['./teacher.component.css']
 })
 export class TeacherComponent implements OnInit {
-  teacherMsg: any;
+  teacherMsg: SMS = {
+    name: '',
+    message: ''
+  };
   constructor(private _smsService: SmsService) { }
 
   ngOnInit() {
   }
 
   teacherSMS(msg) {
-    this._smsService.sendTeacherSMS(msg);
-    this.teacherMsg = '';
+    this.teacherMsg = {
+      name: 'Teacher',
+      message: msg
+    }
+    this._smsService.sendSMS(this.teacherMsg);
   }
 
 }

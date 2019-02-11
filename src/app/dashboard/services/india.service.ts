@@ -19,4 +19,15 @@ export class IndiaService {
   }
 
 
+
+  getStateDetails(codeName: String) {
+    const server = this._http.get(this._indiaUrl).pipe(
+      map(data => data),
+      filter((s) => {
+        return s['code'] === codeName
+      })
+    )
+    return server
+  }
+
 }

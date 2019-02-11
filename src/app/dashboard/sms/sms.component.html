@@ -6,8 +6,9 @@
     <app-student></app-student>
   </div>
 </div>
-<section>
+<section class="col-md-6 offset-md-3">
   <ul class="list-group">
-    <li class="list-group-item" *ngFor="let sms of smslist; index as i;">{{i+1}}{{user}} : {{sms}}</li>
+    <li class="list-group-item" *ngFor="let sms of smslist; index as i;" [ngClass]="sms.name =='Student'? 'studentClass':'teacherClass'">{{sms.name}}
+      : {{sms.message}}</li>
   </ul>
 </section>

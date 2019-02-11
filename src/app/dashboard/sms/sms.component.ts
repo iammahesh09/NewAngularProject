@@ -8,22 +8,17 @@ import { SmsService } from '../services/sms.service';
 })
 export class SmsComponent implements OnInit {
 
-  private smslist: Array<any> = [];
-
   user: String;
+  smslist: any = [];
 
 
   constructor(private _smsService: SmsService) { }
 
   ngOnInit() {
-    this._smsService.getStudentSMS().subscribe(
+    this._smsService.getSMS().subscribe(
       message => {
+        console.log(message)
         this.smslist.push(message);
-      }
-    );
-    this._smsService.getTeacherSMS().subscribe(
-      res => {
-        this.smslist.push(res);
       }
     );
   }

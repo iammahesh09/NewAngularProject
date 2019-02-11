@@ -11,20 +11,12 @@ export class SmsService {
 
   constructor() { }
 
-  getTeacherSMS(): Observable<any> {
+  getSMS(): Observable<any> {
     return this._teacher.asObservable();
   }
 
-  sendTeacherSMS(T_SMS: any) {
+  sendSMS(T_SMS: any) {
     this._teacher.next(T_SMS);
-  }
-
-  getStudentSMS(): Observable<any> {
-    return this._student.asObservable();
-  }
-
-  sendStudentSMS(S_SMS: any) {
-    this._student.next(S_SMS);
   }
 
 
