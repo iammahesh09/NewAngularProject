@@ -1,14 +1,29 @@
-<p>home works!</p>
-<input type="text" #parent placeholder="Enter name">
-<button type="button" (click)="sendData(parent.value)">Send</button>
-<button (click)="throwError()">Error</button>
-<hr />
-
-<app-demo [parentText]="title"></app-demo>
-<hr>
-<button (click)="showTrue()">True</button>
-<button (click)="showFalse()">False</button>
-<p *ngIf="isTrue; else notTrue">Is ture</p>
-<ng-template #notTrue>
-  <p>is False</p>
-</ng-template>
+<div class="row">
+  <div class="col">
+    <p class="display-4">Home Component</p>
+    <hr />
+    <form [formGroup]="empForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="username">User Name</label>
+        <input type="email" class="form-control" id="username" formControlName="username" placeholder="User name">
+      </div>
+      <div class="form-group">
+        <label for="email">Email address</label>
+        <input type="email" class="form-control" id="email" formControlName="email" placeholder="Enter email">
+      </div>
+      <div class="form-group">
+        <label for="mobile">Phone</label>
+        <input type="text" class="form-control" id="mobile" formControlName="mobile" placeholder="Phone">
+      </div>
+      <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" formControlName="whatsapp" id="whatsapp">
+        <label class="form-check-label" for="whatsapp">WhatsApp</label>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="empForm.invalid">Submit</button>
+      <button type="button" class="btn btn-success ml-5" (click)="setDataLoad()">Data Load</button>
+    </form>
+  </div>
+  <div class="col">
+    <app-demo [employees]="employeeData" (employee)="updateEmp($event)"></app-demo>
+  </div>
+</div>

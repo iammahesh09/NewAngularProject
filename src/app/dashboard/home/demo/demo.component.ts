@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+
 
 @Component({
   selector: 'app-demo',
@@ -7,7 +8,9 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class DemoComponent implements OnInit {
 
-  @Input() parentText;
+  @Input() employees = [];
+
+  @Output() employee = new EventEmitter();
 
   first_name: String = 'Mahesh';
   last_name: String = 'Chejarla';
@@ -16,10 +19,16 @@ export class DemoComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log(this.employees);
   }
 
   dataSend(data) {
     this.childText = data;
+  }
+
+  selectEmployee(emp) {
+    // console.log(emp);
+    this.employee.emit(emp);
   }
 
 }
